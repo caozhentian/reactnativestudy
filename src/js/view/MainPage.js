@@ -32,16 +32,16 @@ const RootTabs = TabNavigator({
   Home: {
     screen: HomeScreen,
     navigationOptions :{
-      title:"首页" ,
+      header:null ,
       tabBarIcon: ({ focused }) =>
         {
             if (focused) {
                 return (
-                    <Image style={styles.tabBarIcon} source={require('./src/image/ic_tabbar_home_s.png')}/>
+                    <Image style={styles.tabBarIcon} source={require('../../image/ic_tabbar_home_s.png')}/>
                 );
             }
             return (
-                <Image  style={styles.tabBarIcon} source={require('./src/image/ic_tabbar_home.png')}/>
+                <Image  style={styles.tabBarIcon} source={require('../../image/ic_tabbar_home.png')}/>
             );
         },
 
@@ -50,16 +50,16 @@ const RootTabs = TabNavigator({
   Profile: {
     screen: ProfileScreen,
     navigationOptions :{
-      title:"我的" ,
+      header:null ,
       tabBarIcon: ({ focused }) =>
         {
             if (focused) {
                 return (
-                    <Image style={styles.tabBarIcon} source={require('./js/img/ic_tabbar_user_s.png')}/>
+                    <Image style={styles.tabBarIcon} source={require('../../image/ic_tabbar_user_s.png')}/>
                 );
             }
             return (
-                <Image  style={styles.tabBarIcon} source={require('./js/img/ic_tabbar_user.png')}/>
+                <Image  style={styles.tabBarIcon} source={require('../..//image/ic_tabbar_user.png')}/>
             );
         },
     }

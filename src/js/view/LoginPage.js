@@ -8,7 +8,7 @@ import {
     View ,
     Alert
 } from 'react-native';
-import Net from '../net/net'
+import Net from '../net/net';
 
 /**
  *使用Flexbox布局
@@ -28,7 +28,9 @@ var dimensions = require('Dimensions');
 //获取屏幕的宽度
 var {width} = dimensions.get('window');
 
-export  default class LoginView extends Component {
+export  default class LoginScreen extends Component {
+    
+   
     render() {
         return (
             <View style={styles.container}>
@@ -47,7 +49,7 @@ export  default class LoginView extends Component {
                     secureTextEntry={true}
                     underlineColorAndroid={'transparent'}/>
                 {/*登录*/}
-                <TouchableHighlight style={styles.btnStyle} onPress={() => { _onPressButton()}}>
+                <TouchableHighlight style={styles.btnStyle} onPress={() => { this.props.navigation.navigate("Main");}}>
                     <Text style={styles.loginText}>登录</Text>
                 </TouchableHighlight>
                 {/*无法登录  新用户*/}
