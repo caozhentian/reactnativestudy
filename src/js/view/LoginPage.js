@@ -30,9 +30,9 @@ var {width} = dimensions.get('window');
 
 export  default class LoginScreen extends Component {
     
-   
     render() {
         return (
+            
             <View style={styles.container}>
                 {/*头像*/}
                 <Image style={styles.circleImage} source={require('../../image/logo.png')}/>
@@ -49,7 +49,10 @@ export  default class LoginScreen extends Component {
                     secureTextEntry={true}
                     underlineColorAndroid={'transparent'}/>
                 {/*登录*/}
-                <TouchableHighlight style={styles.btnStyle} onPress={() => { this.props.navigation.navigate("Main");}}>
+                <TouchableHighlight style={styles.btnStyle} onPress={() => {
+                     var that = this.props.navigation ;
+                     _onPressButton(that)
+                    }}>
                     <Text style={styles.loginText}>登录</Text>
                 </TouchableHighlight>
                 {/*无法登录  新用户*/}
@@ -62,9 +65,10 @@ export  default class LoginScreen extends Component {
     }
 }
 
-function _onPressButton(){
+function _onPressButton( that){
     const data = { 'mobile': '13186076890','code': '1234' , 'IMEI': '893829ABC'};
     Net.post("/nologin/login" ,data)
+    that.navigate("Main")
 }
 const styles = StyleSheet.create({
     container: {
