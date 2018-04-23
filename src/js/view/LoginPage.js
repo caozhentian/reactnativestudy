@@ -29,7 +29,13 @@ var dimensions = require('Dimensions');
 var {width} = dimensions.get('window');
 
 export  default class LoginScreen extends Component {
-    
+    constructor(props){
+        super(props)
+        this.state = {
+            userName:"" ,
+            userPassword:""
+        }
+    }
     render() {
         return (
             
@@ -41,7 +47,10 @@ export  default class LoginScreen extends Component {
                     style={styles.textInput}
                     placeholder={'请输入用户名'}
                     //输入框下划线
-                    underlineColorAndroid={'transparent'}/>
+                    underlineColorAndroid={'transparent'} 
+                    onChangeText = { text => 
+                        this.setState(oldstatus => { return {userName:text}})}
+                    />
                 {/*密码*/}
                 <TextInput
                     style={styles.textInput}
@@ -66,7 +75,7 @@ export  default class LoginScreen extends Component {
 }
 
 function _onPressButton( that){
-    const data = { 'mobile': '13186076890','code': '1234' , 'IMEI': '893829ABC'};
+    const data = { 'mobile': that.state.userName,'code': '1234' , 'IMEI': '893829ABC'};
     Net.post("/nologin/login" ,data)
     that.navigate("Main")
 }

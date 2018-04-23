@@ -40,6 +40,12 @@ public class MainApplication extends Application implements ReactApplication {
   @Override
   public void onCreate() {
     super.onCreate();
+
+     if (BuildConfig.DEBUG) {
+          StethoWrapper.initialize(this);
+          StethoWrapper.addInterceptor();
+      }
+
     SoLoader.init(this, /* native exopackage */ false);
   }
 }
