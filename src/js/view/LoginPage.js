@@ -6,9 +6,11 @@ import {
     TextInput,
     TouchableHighlight,
     View ,
-    Alert
+    Alert ,ToastAndroid
 } from 'react-native';
 import Net from '../net/net';
+import DeviceInfo from 'react-native-device-info';
+
 
 /**
  *使用Flexbox布局
@@ -48,18 +50,19 @@ export  default class LoginScreen extends Component {
                     placeholder={'请输入用户名'}
                     //输入框下划线
                     underlineColorAndroid={'transparent'} 
-                    onChangeText = { text => 
-                        this.setState(oldstatus => { return {userName:text}})}
+                    onChangeText = { userName => this.setState( {userName})}
                     />
                 {/*密码*/}
                 <TextInput
                     style={styles.textInput}
                     placeholder={'请输入密码'}
                     secureTextEntry={true}
-                    underlineColorAndroid={'transparent'}/>
+                    underlineColorAndroid={'transparent'} 
+                    onChangeText = {userPassword => this.setState({userPassword})}
+                    />
                 {/*登录*/}
                 <TouchableHighlight style={styles.btnStyle} onPress={() => {
-                     var that = this.props.navigation ;
+                     var that = this ;
                      _onPressButton(that)
                     }}>
                     <Text style={styles.loginText}>登录</Text>
@@ -74,10 +77,25 @@ export  default class LoginScreen extends Component {
     }
 }
 
-function _onPressButton( that){
-    const data = { 'mobile': that.state.userName,'code': '1234' , 'IMEI': '893829ABC'};
-    Net.post("/nologin/login" ,data)
-    that.navigate("Main")
+function _onPressButton( that ){
+    let obj = that.state.userName
+    if( typeof obj == "undefined" || obj == null || obj == ""){
+        //ToastAndroid.show('请输入用户名!');
+        ToastAndroid.show('请输入用户名!', ToastAndroid.SHORT);
+        return ;
+    }
+    let password = that.state.userPassword
+    if( typeof password == "undefined" || password == null || password == ""){
+        //ToastAndroid.show('请输入用户密码!');
+        ToastAndroid.show('请输入用户密码!', ToastAndroid.SHORT);
+        return ;
+    }
+    Net.initAxios() ;
+    DeviceInfo.getMACAddress().then(mac => {
+        const data = { 'mobile': that.state.userName,'code': that.state.userPassword};
+        Net.post("/nologin/login" ,data)
+      });
+    that.props.navigation.navigate("Main")
 }
 const styles = StyleSheet.create({
     container: {
