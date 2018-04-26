@@ -26,8 +26,11 @@ export default  class LoginPage extends Component {
         return (
         //字母必须大写开头
         //<LoginView></LoginView>  
-        <RootStackRootStack/>
-        );
+        <RootStackRootStack/>);
+    }
+
+    componentDidMount(){
+        
     }
 }
 

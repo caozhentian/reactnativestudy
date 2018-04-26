@@ -6,9 +6,10 @@ import {
     TextInput,
     TouchableHighlight,
     View ,
-    Alert ,ToastAndroid
+    Alert ,ToastAndroid ,ActivityIndicator
 } from 'react-native';
 import Net from '../net/net';
+import UrlConstant from '../config/constant';
 import DeviceInfo from 'react-native-device-info';
 
 
@@ -35,7 +36,8 @@ export  default class LoginScreen extends Component {
         super(props)
         this.state = {
             userName:"" ,
-            userPassword:""
+            userPassword:"" ,
+            showActivityIndicator:true ,
         }
     }
     render() {
@@ -72,6 +74,7 @@ export  default class LoginScreen extends Component {
                     <Text style={{color: '#4398ff'}}>无法登录</Text>
                     <Text style={{color: '#4398ff'}}>新用户</Text>
                 </View>
+                <ActivityIndicator animating = {this.state.showActivityIndicator}/>
             </View>
         );
     }
@@ -79,6 +82,7 @@ export  default class LoginScreen extends Component {
 
 function _onPressButton( that ){
     let obj = that.state.userName
+    that.setState({showActivityIndicator: false})
     if( typeof obj == "undefined" || obj == null || obj == ""){
         //ToastAndroid.show('请输入用户名!');
         ToastAndroid.show('请输入用户名!', ToastAndroid.SHORT);
@@ -93,7 +97,9 @@ function _onPressButton( that ){
     Net.initAxios() ;
     DeviceInfo.getMACAddress().then(mac => {
         const data = { 'mobile': that.state.userName,'code': that.state.userPassword};
-        Net.post("/nologin/login" ,data)
+        var promise = Net.post(UrlConstant.URL_PATH_LOGIN ,data , model =>{
+            {ToastAndroid.show(model.message, ToastAndroid.SHORT);}
+        }) ;
       });
     that.props.navigation.navigate("Main")
 }
