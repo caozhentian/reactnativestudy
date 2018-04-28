@@ -10,7 +10,6 @@ import {
 } from 'react-native';
 import Net from '../net/net';
 import UrlConstant from '../config/constant';
-import DeviceInfo from 'react-native-device-info';
 
 
 /**
@@ -95,12 +94,10 @@ function _onPressButton( that ){
         return ;
     }
     Net.initAxios() ;
-    DeviceInfo.getMACAddress().then(mac => {
-        const data = { 'mobile': that.state.userName,'code': that.state.userPassword};
-        var promise = Net.post(UrlConstant.URL_PATH_LOGIN ,data , model =>{
-            {ToastAndroid.show(model.message, ToastAndroid.SHORT);}
-        }) ;
-      });
+    const data = { 'mobile': that.state.userName,'code': that.state.userPassword};
+    var promise = Net.post(UrlConstant.URL_PATH_LOGIN ,data , model =>{
+        {ToastAndroid.show(model.message, ToastAndroid.SHORT);}
+    }) ;
     that.props.navigation.navigate("Main")
 }
 const styles = StyleSheet.create({

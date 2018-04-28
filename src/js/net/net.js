@@ -3,6 +3,7 @@ import axios from 'axios';
 import qs from 'qs';
 import DeviceInfo from 'react-native-device-info';
 import {ToastAndroid} from 'react-native' ;
+//import Toast from 'react-native-root-toast';
 
 export default class Net {
     static BASE_URL = 'http://diting.3tichina.com:80/diting/diting'; 
@@ -39,6 +40,8 @@ export default class Net {
           let model = response.data
           if(model.code == 0){//失败 
             ToastAndroid.show(model.message, ToastAndroid.SHORT);
+            //Toast.show( "this is a message")
+            //Toast.show('This is a long toast.');
           }
           else{
             sucess(model)
