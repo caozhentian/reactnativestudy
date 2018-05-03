@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 import Net from '../net/net';
 import UrlConstant from '../config/constant';
+import Toast from 'react-native-root-toast';
 
 
 /**
@@ -84,6 +85,7 @@ function _onPressButton( that ){
     that.setState({showActivityIndicator: false})
     if( typeof obj == "undefined" || obj == null || obj == ""){
         //ToastAndroid.show('请输入用户名!');
+        Toast.show("are you ok platform toast");
         ToastAndroid.show('请输入用户名!', ToastAndroid.SHORT);
         return ;
     }

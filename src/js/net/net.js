@@ -3,7 +3,7 @@ import axios from 'axios';
 import qs from 'qs';
 import DeviceInfo from 'react-native-device-info';
 import {ToastAndroid} from 'react-native' ;
-//import Toast from 'react-native-root-toast';
+import Toast from 'react-native-root-toast';
 
 export default class Net {
     static BASE_URL = 'http://diting.3tichina.com:80/diting/diting'; 
