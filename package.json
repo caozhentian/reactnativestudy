@@ -9,10 +9,8 @@
   "dependencies": {
     "axios": "^0.18.0",
     "axios-response-logger": "^0.1.0",
-    "npm": "^5.8.0",
-    "qs": "^6.5.1",
-    "react": "16.3.0-alpha.1",
-    "react-native": "0.54.2",
+    "react": "16.3.1",
+    "react-native": "0.55.3",
     "react-native-device-info": "^0.21.5",
     "react-navigation": "^1.5.11"
   },
@@ -20,7 +18,7 @@
     "babel-jest": "22.4.3",
     "babel-preset-react-native": "4.0.0",
     "jest": "22.4.3",
-    "react-test-renderer": "16.3.0-alpha.1"
+    "react-test-renderer": "16.3.1"
   },
   "jest": {
     "preset": "react-native"
