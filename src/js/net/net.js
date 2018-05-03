@@ -13,7 +13,7 @@ export default class Net {
       axios.interceptors.request.use(function(config){
           //在发送请求之前做某事
           var data = qs.parse(config.data) ;
-          //data.IMEI = DeviceInfo.getMACAddress ;
+          data.IMEI = DeviceInfo.getMACAddress ;
           data.IMEI = 'sdsds' ;
           config.data =  qs.stringify(data);
           return config;
@@ -39,7 +39,7 @@ export default class Net {
           console.log(response.config);
           let model = response.data
           if(model.code == 0){//失败 
-            ToastAndroid.show(model.message, ToastAndroid.SHORT);
+            Toast.show(model.message);
             //Toast.show( "this is a message")
             //Toast.show('This is a long toast.');
           }
@@ -54,17 +54,17 @@ export default class Net {
             console.log(error.response.data);
             console.log(error.response.status);
             console.log(error.response.headers);
-            ToastAndroid.show(error.response.data, ToastAndroid.SHORT);
+            Toast.show(error.response.data);
           } else if (error.request) {
             // The request was made but no response was received
             // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
             // http.ClientRequest in node.js
             console.log(error.request);
-            ToastAndroid.show(error.request, ToastAndroid.SHORT);  
+            Toast.show(error.request);  
           } else {
             // Something happened in setting up the request that triggered an Error
             console.log('Error', error.message);
-            ToastAndroid.show(error.message, ToastAndroid.SHORT);  
+            Toast.show(error.message);  
           }
           console.log(error.config);
       });   

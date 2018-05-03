@@ -73576,9 +73576,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
         });
 
         if (typeof obj == "undefined" || obj == null || obj == "") {
-            _reactNativeRootToast2.default.show("are you ok platform toast");
-
-            _reactNative.ToastAndroid.show('请输入用户名!', _reactNative.ToastAndroid.SHORT);
+            _reactNativeRootToast2.default.show('请输入用户名!');
 
             return;
         }
@@ -73586,7 +73584,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
         var password = that.state.userPassword;
 
         if (typeof password == "undefined" || password == null || password == "") {
-            _reactNative.ToastAndroid.show('请输入用户密码!', _reactNative.ToastAndroid.SHORT);
+            _reactNativeRootToast2.default.show('请输入用户密码!');
 
             return;
         }
@@ -73711,6 +73709,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
         _axios2.default.interceptors.request.use(function (config) {
           var data = _qs2.default.parse(config.data);
 
+          data.IMEI = _reactNativeDeviceInfo2.default.getMACAddress;
           data.IMEI = 'sdsds';
           config.data = _qs2.default.stringify(data);
           return config;
@@ -73738,7 +73737,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
           var model = response.data;
 
           if (model.code == 0) {
-            _reactNative.ToastAndroid.show(model.message, _reactNative.ToastAndroid.SHORT);
+            _reactNativeRootToast2.default.show(model.message);
           } else {
             sucess(model);
           }
@@ -73748,15 +73747,15 @@ __d(function (global, _require, module, exports, _dependencyMap) {
             console.log(error.response.status);
             console.log(error.response.headers);
 
-            _reactNative.ToastAndroid.show(error.response.data, _reactNative.ToastAndroid.SHORT);
+            _reactNativeRootToast2.default.show(error.response.data);
           } else if (error.request) {
             console.log(error.request);
 
-            _reactNative.ToastAndroid.show(error.request, _reactNative.ToastAndroid.SHORT);
+            _reactNativeRootToast2.default.show(error.request);
           } else {
             console.log('Error', error.message);
 
-            _reactNative.ToastAndroid.show(error.message, _reactNative.ToastAndroid.SHORT);
+            _reactNativeRootToast2.default.show(error.message);
           }
 
           console.log(error.config);

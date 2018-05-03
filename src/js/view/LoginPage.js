@@ -85,14 +85,15 @@ function _onPressButton( that ){
     that.setState({showActivityIndicator: false})
     if( typeof obj == "undefined" || obj == null || obj == ""){
         //ToastAndroid.show('请输入用户名!');
-        Toast.show("are you ok platform toast");
-        ToastAndroid.show('请输入用户名!', ToastAndroid.SHORT);
+        Toast.show('请输入用户名!');
+        //ToastAndroid.show('请输入用户名!', ToastAndroid.SHORT);
         return ;
     }
     let password = that.state.userPassword
     if( typeof password == "undefined" || password == null || password == ""){
         //ToastAndroid.show('请输入用户密码!');
-        ToastAndroid.show('请输入用户密码!', ToastAndroid.SHORT);
+        Toast.show('请输入用户密码!');
+        //ToastAndroid.show('请输入用户密码!', ToastAndroid.SHORT);
         return ;
     }
     Net.initAxios() ;
